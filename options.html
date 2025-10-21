@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="configTitle">Configuration</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>⚙️ <span data-i18n="configTitle">Configuration</span></h1>
+      <p class="subtitle" data-i18n="configSubtitle">CSV Export Settings</p>
+    </header>
+
+    <main>
+      <form id="configForm">
+
+      <div class="form-group address-format-section">
+        <h3 style="color: #667eea; margin-bottom: 12px;">📍 <span data-i18n="addressFieldsTitle">Address Field Templates</span></h3>
+        <p style="font-size: 13px; color: #666; margin-bottom: 12px;" data-i18n="addressFieldsDesc">Customize what goes into each CSV address field. Use variables: $street, $number, $floor, $apt, $city, $province, $postalCode</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
+          <div>
+            <label for="calleDestinoTemplate">
+              <strong data-i18n="calleDestino">calle_destino</strong>
+              <span class="help-text" data-i18n="streetAddressField">Street address field</span>
+            </label>
+            <input 
+              type="text" 
+              id="calleDestinoTemplate" 
+              name="calleDestinoTemplate" 
+              value="$street"
+              placeholder="$street or $street $number"
+              style="width: 100%;"
+            >
+          </div>
+          
+          <div>
+            <label for="alturaDestinoTemplate">
+              <strong data-i18n="alturaDestino">altura_destino</strong>
+              <span class="help-text" data-i18n="streetNumberField">Street number field</span>
+            </label>
+            <input 
+              type="text" 
+              id="alturaDestinoTemplate" 
+              name="alturaDestinoTemplate" 
+              value="$number"
+              placeholder="$number"
+              style="width: 100%;"
+            >
+          </div>
+          
+          <div>
+            <label for="pisoTemplate">
+              <strong data-i18n="piso">piso</strong>
+              <span class="help-text" data-i18n="floorField">Floor field</span>
+            </label>
+            <input 
+              type="text" 
+              id="pisoTemplate" 
+              name="pisoTemplate" 
+              value="$floor"
+              placeholder="$floor"
+              style="width: 100%;"
+            >
+          </div>
+          
+          <div>
+            <label for="dptoTemplate">
+              <strong data-i18n="dpto">dpto</strong>
+              <span class="help-text" data-i18n="apartmentField">Apartment field</span>
+            </label>
+            <input 
+              type="text" 
+              id="dptoTemplate" 
+              name="dptoTemplate" 
+              value="$apt"
+              placeholder="$apt"
+              style="width: 100%;"
+            >
+          </div>
+        </div>
+        
+        <small style="display: block; margin-top: 12px; color: #888; font-size: 12px;">
+          <strong>Examples:</strong><br>
+          • calle_destino: "$street $number" → "Av. Corrientes 1234"<br>
+          • calle_destino: "$street", altura_destino: "$number" → Separate fields<br>
+          • Leave empty to skip field
+        </small>
+      </div>
+
+      <div class="form-group sanitization-section">
+        <h3 style="color: #667eea; margin-bottom: 12px;">🔤 <span data-i18n="sanitizationTitle">Text Sanitization</span></h3>
+        <p style="font-size: 13px; color: #666; margin-bottom: 12px;" data-i18n="sanitizationDesc">Configure how special characters are handled in CSV export</p>
+        
+        <div style="margin-top: 16px;">
+          <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+            <input type="checkbox" id="removeAccents" name="removeAccents" checked>
+            <span data-i18n="removeAccents"><strong>Remove accents</strong> (á→a, é→e, í→i, ó→o, ú→u)</span>
+          </label>
+          
+          <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+            <input type="checkbox" id="replaceEnie" name="replaceEnie">
+            <span data-i18n="replaceEnie"><strong>Replace ñ with n</strong> (ñ→n, Ñ→N)</span>
+          </label>
+          
+          <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+            <input type="checkbox" id="replaceUmlaut" name="replaceUmlaut">
+            <span data-i18n="replaceUmlaut"><strong>Replace ü with u</strong> (ü→u, Ü→U)</span>
+          </label>
+          
+          <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+            <input type="checkbox" id="removeParentheses" name="removeParentheses" checked>
+            <span data-i18n="removeParentheses"><strong>Remove parentheses</strong> ( )</span>
+          </label>
+          
+          <label style="display: flex; align-items: center; gap: 8px;">
+            <input type="checkbox" id="removeSpecialChars" name="removeSpecialChars" checked>
+            <span data-i18n="removeSpecialChars"><strong>Remove special characters</strong> (quotes, brackets, etc.)</span>
+          </label>
+        </div>
+        
+        <small style="display: block; margin-top: 12px; color: #888; font-size: 12px;" data-i18n="sanitizationNote">
+          Correo Argentino may reject files with certain special characters. Configure based on their requirements.
+        </small>
+      </div>
+
+      <div class="form-group dimensions-section">
+        <h3 style="color: #667eea; margin-bottom: 12px;">📦 <span data-i18n="dimensionsTitle">Default Package Dimensions</span></h3>
+        <p style="font-size: 13px; color: #666; margin-bottom: 16px;" data-i18n="dimensionsDesc">Set default dimensions (in CM) for CSV export</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+          <div>
+            <label for="defaultLargo">
+              <strong data-i18n="largo">Largo (Length)</strong>
+              <span class="help-text">CM</span>
+            </label>
+            <input 
+              type="number" 
+              id="defaultLargo" 
+              name="defaultLargo" 
+              value="30"
+              placeholder="30"
+              step="0.1"
+              min="1"
+            >
+          </div>
+          
+          <div>
+            <label for="defaultAncho">
+              <strong data-i18n="ancho">Ancho (Width)</strong>
+              <span class="help-text">CM</span>
+            </label>
+            <input 
+              type="number" 
+              id="defaultAncho" 
+              name="defaultAncho" 
+              value="20"
+              placeholder="20"
+              step="0.1"
+              min="1"
+            >
+          </div>
+          
+          <div>
+            <label for="defaultAltura">
+              <strong data-i18n="altura">Altura (Height)</strong>
+              <span class="help-text">CM</span>
+            </label>
+            <input 
+              type="number" 
+              id="defaultAltura" 
+              name="defaultAltura" 
+              value="10"
+              placeholder="10"
+              step="0.1"
+              min="1"
+            >
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">
+            💾 <span data-i18n="saveConfig">Save Configuration</span>
+          </button>
+          <button type="reset" class="btn btn-outline" data-i18n="reset">
+            Reset
+          </button>
+        </div>
+      </form>
+
+      <div id="statusMessage" class="status-message" style="display: none;"></div>
+
+      <div class="info-section">
+        <h3>📋 <span data-i18n="aboutTitle">About</span></h3>
+        <p data-i18n="aboutDesc">Configure CSV export settings for Correo Argentino bulk upload.</p>
+        <p style="margin-top: 12px; font-size: 13px;">
+          <span data-i18n="aboutAddressFields"><strong>Address Field Templates:</strong> Configure each CSV field (calle_destino, altura_destino, piso, dpto) independently using variables like $street, $number, $floor, $apt.</span><br>
+          <span data-i18n="aboutDimensions"><strong>Default Dimensions:</strong> Set standard package sizes in CM (largo, ancho, altura) for bulk upload.</span>
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

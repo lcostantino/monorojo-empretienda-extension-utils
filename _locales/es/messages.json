@@ -1,0 +1,155 @@
+{
+  "extName": {
+    "message": "Empretienda Utils by MonoRojo FunShirt!"
+  },
+  "extDescription": {
+    "message": "Lee y extrae información de pedidos de páginas de comercio electrónico"
+  },
+  "extractButton": {
+    "message": "Extraer Página Actual"
+  },
+  "clearButton": {
+    "message": "Limpiar Historial"
+  },
+  "exportButton": {
+    "message": "Exportar a JSON"
+  },
+  "exportCSVButton": {
+    "message": "Exportar a CSV de Correo Argentino"
+  },
+  "copyButton": {
+    "message": "Copiar al Portapapeles"
+  },
+  "settingsButton": {
+    "message": "Configuración"
+  },
+  "currentOrder": {
+    "message": "Pedido Actual"
+  },
+  "recentOrders": {
+    "message": "Pedidos Recientes"
+  },
+  "noOrdersFound": {
+    "message": "No se encontraron pedidos aún."
+  },
+  "noOrdersHint": {
+    "message": "Visita una página de pedido y haz clic en 'Extraer Página Actual' para capturar datos del pedido."
+  },
+  "orderNumber": {
+    "message": "Pedido"
+  },
+  "shippingInfo": {
+    "message": "Información de Envío"
+  },
+  "address": {
+    "message": "Dirección"
+  },
+  "recipient": {
+    "message": "Destinatario"
+  },
+  "weight": {
+    "message": "Peso"
+  },
+  "cost": {
+    "message": "Costo"
+  },
+  "configTitle": {
+    "message": "Configuración"
+  },
+  "configSubtitle": {
+    "message": "Configuración de Exportación CSV"
+  },
+  "addressFieldsTitle": {
+    "message": "Plantillas de Campos de Dirección"
+  },
+  "addressFieldsDesc": {
+    "message": "Personaliza qué va en cada campo de dirección CSV. Usa variables: $street, $number, $floor, $apt, $city, $province, $postalCode"
+  },
+  "calleDestino": {
+    "message": "calle_destino"
+  },
+  "alturaDestino": {
+    "message": "altura_destino"
+  },
+  "piso": {
+    "message": "piso"
+  },
+  "dpto": {
+    "message": "dpto"
+  },
+  "streetAddressField": {
+    "message": "Campo de dirección de calle"
+  },
+  "streetNumberField": {
+    "message": "Campo de número de calle"
+  },
+  "floorField": {
+    "message": "Campo de piso"
+  },
+  "apartmentField": {
+    "message": "Campo de departamento"
+  },
+  "sanitizationTitle": {
+    "message": "Sanitización de Texto"
+  },
+  "sanitizationDesc": {
+    "message": "Configura cómo se manejan los caracteres especiales en la exportación CSV"
+  },
+  "removeAccents": {
+    "message": "Eliminar acentos"
+  },
+  "replaceEnie": {
+    "message": "Reemplazar ñ con n"
+  },
+  "replaceUmlaut": {
+    "message": "Reemplazar ü con u"
+  },
+  "removeParentheses": {
+    "message": "Eliminar paréntesis"
+  },
+  "removeSpecialChars": {
+    "message": "Eliminar caracteres especiales"
+  },
+  "sanitizationNote": {
+    "message": "Correo Argentino puede rechazar archivos con ciertos caracteres especiales. Configura según sus requisitos."
+  },
+  "dimensionsTitle": {
+    "message": "Dimensiones Predeterminadas del Paquete"
+  },
+  "dimensionsDesc": {
+    "message": "Establece dimensiones predeterminadas (en CM) para exportación CSV"
+  },
+  "largo": {
+    "message": "Largo (Length)"
+  },
+  "ancho": {
+    "message": "Ancho (Width)"
+  },
+  "altura": {
+    "message": "Altura (Height)"
+  },
+  "saveConfig": {
+    "message": "Guardar Configuración"
+  },
+  "reset": {
+    "message": "Restablecer"
+  },
+  "aboutTitle": {
+    "message": "Acerca de"
+  },
+  "aboutDesc": {
+    "message": "Configura las opciones de exportación CSV para carga masiva de Correo Argentino."
+  },
+  "aboutAddressFields": {
+    "message": "Plantillas de Campos de Dirección: Configura cada campo CSV (calle_destino, altura_destino, piso, dpto) independientemente usando variables como $street, $number, $floor, $apt."
+  },
+  "aboutDimensions": {
+    "message": "Dimensiones Predeterminadas: Establece tamaños estándar de paquetes en CM (largo, ancho, altura) para carga masiva."
+  },
+  "configSaved": {
+    "message": "✓ ¡Configuración guardada exitosamente!"
+  },
+  "configError": {
+    "message": "Error al guardar configuración"
+  }
+}

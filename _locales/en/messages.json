@@ -1,0 +1,155 @@
+{
+  "extName": {
+    "message": "Empretienda Utils by MonoRojo FunShirt!"
+  },
+  "extDescription": {
+    "message": "Reads and extracts order information from e-commerce order pages"
+  },
+  "extractButton": {
+    "message": "Extract Current Page"
+  },
+  "clearButton": {
+    "message": "Clear History"
+  },
+  "exportButton": {
+    "message": "Export to JSON"
+  },
+  "exportCSVButton": {
+    "message": "Export to Correo Argentino CSV"
+  },
+  "copyButton": {
+    "message": "Copy to Clipboard"
+  },
+  "settingsButton": {
+    "message": "Settings"
+  },
+  "currentOrder": {
+    "message": "Current Order"
+  },
+  "recentOrders": {
+    "message": "Recent Orders"
+  },
+  "noOrdersFound": {
+    "message": "No orders found yet."
+  },
+  "noOrdersHint": {
+    "message": "Visit an order page and click 'Extract Current Page' to capture order data."
+  },
+  "orderNumber": {
+    "message": "Order"
+  },
+  "shippingInfo": {
+    "message": "Shipping Information"
+  },
+  "address": {
+    "message": "Address"
+  },
+  "recipient": {
+    "message": "Recipient"
+  },
+  "weight": {
+    "message": "Weight"
+  },
+  "cost": {
+    "message": "Cost"
+  },
+  "configTitle": {
+    "message": "Configuration"
+  },
+  "configSubtitle": {
+    "message": "CSV Export Settings"
+  },
+  "addressFieldsTitle": {
+    "message": "Address Field Templates"
+  },
+  "addressFieldsDesc": {
+    "message": "Customize what goes into each CSV address field. Use variables: $street, $number, $floor, $apt, $city, $province, $postalCode"
+  },
+  "calleDestino": {
+    "message": "calle_destino"
+  },
+  "alturaDestino": {
+    "message": "altura_destino"
+  },
+  "piso": {
+    "message": "piso"
+  },
+  "dpto": {
+    "message": "dpto"
+  },
+  "streetAddressField": {
+    "message": "Street address field"
+  },
+  "streetNumberField": {
+    "message": "Street number field"
+  },
+  "floorField": {
+    "message": "Floor field"
+  },
+  "apartmentField": {
+    "message": "Apartment field"
+  },
+  "sanitizationTitle": {
+    "message": "Text Sanitization"
+  },
+  "sanitizationDesc": {
+    "message": "Configure how special characters are handled in CSV export"
+  },
+  "removeAccents": {
+    "message": "Remove accents"
+  },
+  "replaceEnie": {
+    "message": "Replace ñ with n"
+  },
+  "replaceUmlaut": {
+    "message": "Replace ü with u"
+  },
+  "removeParentheses": {
+    "message": "Remove parentheses"
+  },
+  "removeSpecialChars": {
+    "message": "Remove special characters"
+  },
+  "sanitizationNote": {
+    "message": "Correo Argentino may reject files with certain special characters. Configure based on their requirements."
+  },
+  "dimensionsTitle": {
+    "message": "Default Package Dimensions"
+  },
+  "dimensionsDesc": {
+    "message": "Set default dimensions (in CM) for CSV export"
+  },
+  "largo": {
+    "message": "Largo (Length)"
+  },
+  "ancho": {
+    "message": "Ancho (Width)"
+  },
+  "altura": {
+    "message": "Altura (Height)"
+  },
+  "saveConfig": {
+    "message": "Save Configuration"
+  },
+  "reset": {
+    "message": "Reset"
+  },
+  "aboutTitle": {
+    "message": "About"
+  },
+  "aboutDesc": {
+    "message": "Configure CSV export settings for Correo Argentino bulk upload."
+  },
+  "aboutAddressFields": {
+    "message": "Address Field Templates: Configure each CSV field (calle_destino, altura_destino, piso, dpto) independently using variables like $street, $number, $floor, $apt."
+  },
+  "aboutDimensions": {
+    "message": "Default Dimensions: Set standard package sizes in CM (largo, ancho, altura) for bulk upload."
+  },
+  "configSaved": {
+    "message": "✓ Configuration saved successfully!"
+  },
+  "configError": {
+    "message": "Error saving configuration"
+  }
+}
