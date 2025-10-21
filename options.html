@@ -30,8 +30,8 @@
               type="text" 
               id="calleDestinoTemplate" 
               name="calleDestinoTemplate" 
-              value="$street"
-              placeholder="$street or $street $number"
+              value="$street  $number - $floor $apt"
+              placeholder="$street  $number - $floor $apt"
               style="width: 100%;"
             >
           </div>
@@ -45,8 +45,8 @@
               type="text" 
               id="alturaDestinoTemplate" 
               name="alturaDestinoTemplate" 
-              value="$number"
-              placeholder="$number"
+              value=""
+              placeholder="(vacío por defecto)"
               style="width: 100%;"
             >
           </div>
@@ -60,8 +60,8 @@
               type="text" 
               id="pisoTemplate" 
               name="pisoTemplate" 
-              value="$floor"
-              placeholder="$floor"
+              value=""
+              placeholder="(vacío por defecto)"
               style="width: 100%;"
             >
           </div>
@@ -75,18 +75,18 @@
               type="text" 
               id="dptoTemplate" 
               name="dptoTemplate" 
-              value="$apt"
-              placeholder="$apt"
+              value=""
+              placeholder="(vacío por defecto)"
               style="width: 100%;"
             >
           </div>
         </div>
         
         <small style="display: block; margin-top: 12px; color: #888; font-size: 12px;">
-          <strong>Examples:</strong><br>
-          • calle_destino: "$street $number" → "Av. Corrientes 1234"<br>
-          • calle_destino: "$street", altura_destino: "$number" → Separate fields<br>
-          • Leave empty to skip field
+          <strong>Ejemplos:</strong><br>
+          • Predeterminado: calle_destino="$street  $number - $floor $apt" → "Av. Corrientes 1234 - 5 A"<br>
+          • Separados: calle_destino="$street", altura_destino="$number", piso="$floor", dpto="$apt"<br>
+          • Dejar vacío para omitir el campo
         </small>
       </div>
 

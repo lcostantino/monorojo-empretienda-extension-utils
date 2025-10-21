@@ -1,4 +1,6 @@
-// CSV Export functionality for Correo Argentino bulk upload
+// CSV Export functionality for Correo Argentino
+// Converts order data to CSV format for bulk upload
+// Note: Some code in this file was generated with AI assistance
 
 // Province code mapping (from codigos_sucursales_y_provincias_MiCorreo.xlsx)
 const PROVINCE_CODES = {

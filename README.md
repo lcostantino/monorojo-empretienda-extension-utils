@@ -1,83 +1,104 @@
-# Order Page Reader Chrome Extension
+# Empretienda Utils by MonoRojo FunShirt!
 
-Chrome extension that automatically extracts order information from empretienda y exporta a csv para correo argentino.
+Extensión de Chrome para extraer información de pedidos desde páginas de comercio electrónico y exportarla a formato CSV para carga masiva de Correo Argentino.
 
-## Features
+## Características
 
-- **Auto-detection**: Extracts order data when visiting order pages
-- **Manual extraction**: Click to extract from any order page
-- **Multi-site support**: Amazon, eBay, Walmart, Shopify, and custom MUI platforms
-- **Export**: Save to JSON or copy to clipboard
-- **History**: Stores last 50 orders locally
+**Extracción de Datos**
+- Número de pedido
+- Información del cliente
+- Detalles de envío
+- Montos y precios
+- Información de envío completa
 
-## Extracted Data
+**Información de Envío Extraída**
+- Dirección completa (calle, número, piso, departamento)
+- Ciudad, provincia, código postal
+- Nombre del destinatario
+- Email
+- Teléfono
+- Peso del paquete
+- Costo de envío
 
-- Order number
-- Customer name  
-- Order date
-- Total amount & shipping cost
-- Payment/shipping status
-- Items (name, price, quantity, details)
-- Contact info (email, phone)
+## Instalación
 
-## Installation
+1. Abre Chrome y ve a `chrome://extensions/`
+2. Activa el "Modo de desarrollador" (interruptor arriba a la derecha)
+3. Haz clic en "Cargar extensión sin empaquetar"
+4. Selecciona la carpeta `order-reader-extension`
+5. El ícono de la extensión aparece en la barra de herramientas
 
-1. Open Chrome and go to `chrome://extensions/`
-2. Enable "Developer mode" (top-right toggle)
-3. Click "Load unpacked"
-4. Select the `order-reader-extension` folder
-5. Extension icon appears in toolbar
+## Configuración
 
-## Configuration
+Configura las opciones de exportación CSV:
+1. Haz clic en el ícono de la extensión → **⚙️ Configuración**
+2. Personaliza las plantillas de campos de dirección (predeterminado: dirección completa en calle_destino):
+   - calle_destino: `$street  $number - $floor $apt`
+   - altura_destino, piso, dpto: vacíos
+   - Personaliza usando variables: $street, $number, $floor, $apt
+3. Configura la sanitización de texto (acentos, caracteres especiales)
+4. Establece dimensiones predeterminadas del paquete (largo, ancho, altura en CM)
+5. Haz clic en **💾 Guardar Configuración**
 
-Configure CSV export settings:
-1. Click extension icon → **⚙️ Settings**
-2. Customize address field templates:
-   - calle_destino, altura_destino, piso, dpto
-   - Use variables: $street, $number, $floor, $apt
-3. Set default package dimensions (largo, ancho, altura in CM)
-4. Click **💾 Save Configuration**
+Ver [CONFIG.md](CONFIG.md) para instrucciones detalladas de configuración.
+Ver [CSV_EXPORT.md](CSV_EXPORT.md) para documentación completa del formato CSV.
+Ver [I18N.md](I18N.md) para información sobre idiomas soportados.
 
-See [CONFIG.md](CONFIG.md) for detailed setup instructions.
-See [CSV_EXPORT.md](CSV_EXPORT.md) for complete CSV format documentation.
+## Prueba con test.mhtml
 
-**Español**: Ver [README.es.md](README.es.md) | [CSV_EXPORT.es.md](CSV_EXPORT.es.md) | [I18N.md](I18N.md) (Internacionalización)
+1. Abre Chrome
+2. Arrastra y suelta `test.mhtml` en una pestaña del navegador
+3. Haz clic en el ícono de la extensión
+4. Haz clic en "Extraer Página Actual"
+5. Ver los detalles del pedido extraídos
 
-## Testing with test.mhtml
+## Uso
 
-1. Open Chrome
-2. Drag and drop `test.mhtml` into a browser tab
-3. Click the extension icon
-4. Click "Extract Current Page"
-5. View extracted order details
+**Extracción Manual**: Haz clic en el ícono de la extensión → "Extraer Página Actual"
+**Ver Historial**: Ver los últimos 50 pedidos en el popup
+**Opciones de Exportación**:
+- **Exportar a JSON** - Descarga todos los pedidos como JSON
+- **📦 Exportar a CSV de Correo Argentino** - Genera CSV para carga masiva
+- **Copiar al Portapapeles** - Copia datos del pedido como texto
+**Limpiar**: "Limpiar Historial" para eliminar todos los pedidos almacenados
 
-## Usage
+### Exportación CSV de Correo Argentino
 
-**Manual Extract**: Click extension icon → "Extract Current Page"
-**View History**: See last 50 orders in popup
-**Export Options**:
-- **Export to JSON** - Download all orders as JSON
-- **📦 Export to Correo Argentino CSV** - Generate bulk upload CSV
-- **Copy to Clipboard** - Copy order data as text
-**Clear**: "Clear History" to remove all stored orders
+Exporta todos los pedidos a formato CSV para carga masiva en Correo Argentino:
+1. Extrae pedidos de múltiples páginas de pedidos
+2. Haz clic en **📦 Exportar a CSV de Correo Argentino**
+3. Descarga `correo_argentino_AAAA-MM-DD.csv`
+4. Sube al sistema de Correo Argentino
 
-### Correo Argentino CSV Export
+Ver [CSV_EXPORT.es.md](CSV_EXPORT.es.md) para documentación detallada del formato CSV.
 
-Export all orders to CSV format for bulk upload to Correo Argentino:
-1. Extract orders from multiple order pages
-2. Click **📦 Export to Correo Argentino CSV**
-3. Download `correo_argentino_YYYY-MM-DD.csv`
-4. Upload to Correo Argentino system
+## Privacidad
 
-See [CSV_EXPORT.md](CSV_EXPORT.md) for detailed CSV format documentation.
+- Todos los datos se almacenan localmente en el navegador
+- No se contactan servidores externos
+- Límite de 50 pedidos
+- Limpiar en cualquier momento
 
-## Privacy
+## Desarrollo
 
-- All data stored locally in browser
-- No external servers contacted
-- 50 order limit
-- Clear anytime
+Edita los archivos fuente y recarga la extensión en `chrome://extensions/` para probar cambios.
 
-## Development
+## Archivos
 
-Edit source files and reload extension at `chrome://extensions/` to test changes.
+- `manifest.json` - Configuración de la extensión
+- `popup.html/js/css` - Interfaz del popup
+- `content.js/css` - Script de extracción de datos
+- `background.js` - Service worker
+- `options.html/js/css` - Página de configuración
+- `csv-export.js` - Lógica de exportación CSV
+- `config.js` - Funciones auxiliares de configuración
+
+## Soporte
+
+Para problemas o preguntas, consulta la documentación o contacta al equipo de soporte.
+
+## Desarrollo y Atribuciones
+
+Parte del código de esta extensión fue generado con asistencia de inteligencia artificial (IA). El código ha sido revisado y adaptado para cumplir con los requisitos específicos del proyecto.
+
+Ver [AI_ATTRIBUTION.md](AI_ATTRIBUTION.md) para detalles completos sobre qué componentes utilizaron asistencia de IA.

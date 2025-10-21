@@ -1,65 +1,65 @@
-# CSV Export for Correo Argentino
+# Exportación CSV para Correo Argentino
 
-## Overview
+## Descripción General
 
-The extension can export all extracted orders to a CSV file compatible with Correo Argentino's bulk upload system.
+La extensión puede exportar todos los pedidos extraídos a un archivo CSV compatible con el sistema de carga masiva de Correo Argentino.
 
-## How to Use
+## Cómo Usar
 
-1. **Extract Orders**: Visit order pages and click "Extract Current Page" for each order
-2. **Export CSV**: Click **📦 Export to Correo Argentino CSV** button in the popup
-3. **Import**: Upload the generated CSV file to Correo Argentino's bulk upload system
+1. **Extraer Pedidos**: Visita páginas de pedidos y haz clic en "Extraer Página Actual" para cada pedido
+2. **Exportar CSV**: Haz clic en el botón **📦 Exportar a CSV de Correo Argentino** en el popup
+3. **Importar**: Sube el archivo CSV generado al sistema de carga masiva de Correo Argentino
 
-## CSV Format
+## Formato CSV
 
-The exported CSV follows Correo Argentino's `Plantilla_Carga_Masiva.csv` format with 21 fields:
+El CSV exportado sigue el formato de `Plantilla_Carga_Masiva.csv` de Correo Argentino con 21 campos:
 
-### Required Fields
-- `tipo_producto` - Product type (CP=Clásico, EP=Expreso, UP=Hoy)
-- `largo`, `ancho`, `altura` - Package dimensions in CM
-- `peso` - Weight in KG
-- `valor_del_contenido` - Content value in Argentine pesos
-- `provincia_destino` - Province code (single letter)
-- `destino_nombre` - Recipient name
-- `destino_email` - Recipient email
+### Campos Requeridos
+- `tipo_producto` - Tipo de producto (CP=Clásico, EP=Expreso, UP=Hoy)
+- `largo`, `ancho`, `altura` - Dimensiones del paquete en CM
+- `peso` - Peso en KG
+- `valor_del_contenido` - Valor del contenido en pesos argentinos
+- `provincia_destino` - Código de provincia (letra única)
+- `destino_nombre` - Nombre del destinatario
+- `destino_email` - Email del destinatario
 
-### Conditional Fields (for home delivery)
-- `localidad_destino` - City/locality
-- `calle_destino` - Street name
-- `altura_destino` - Street number
-- `codpostal_destino` - Postal code
+### Campos Condicionales (para envío a domicilio)
+- `localidad_destino` - Ciudad/localidad
+- `calle_destino` - Nombre de la calle
+- `altura_destino` - Número de calle
+- `codpostal_destino` - Código postal
 
-### Optional Fields
-- `piso` - Floor number
-- `dpto` - Apartment
-- `cod_area_cel` / `cel` - Cell phone area code and number
-- `numero_orden` - Order number
+### Campos Opcionales
+- `piso` - Número de piso
+- `dpto` - Departamento
+- `cod_area_cel` / `cel` - Código de área y número de celular
+- `numero_orden` - Número de pedido
 
-## Data Mapping
+## Mapeo de Datos
 
-The extension automatically maps extracted order data to CSV fields:
+La extensión mapea automáticamente los datos extraídos a campos CSV:
 
-| Extracted Data | CSV Field |
-|----------------|-----------|
+| Datos Extraídos | Campo CSV |
+|-----------------|-----------|
 | shippingInfo.address.city | localidad_destino |
 | shippingInfo.address.street | calle_destino |
 | shippingInfo.address.number | altura_destino |
 | shippingInfo.address.floor | piso |
 | shippingInfo.address.apartment | dpto |
 | shippingInfo.address.postalCode | codpostal_destino |
-| shippingInfo.address.province | provincia_destino (converted to code) |
+| shippingInfo.address.province | provincia_destino (convertido a código) |
 | shippingInfo.recipient.name | destino_nombre |
 | shippingInfo.recipient.email | destino_email |
-| shippingInfo.recipient.phone | cod_area_cel / cel (parsed) |
+| shippingInfo.recipient.phone | cod_area_cel / cel (parseado) |
 | shippingInfo.weight | peso |
 | orderNumber | numero_orden |
 
-## Province Codes
+## Códigos de Provincias
 
-The extension automatically converts province names to codes:
+La extensión convierte automáticamente nombres de provincias a códigos:
 
-| Province | Code | Province | Code |
-|----------|------|----------|------|
+| Provincia | Código | Provincia | Código |
+|-----------|--------|-----------|--------|
 | Buenos Aires | B | Mendoza | M |
 | CABA | C | Misiones | N |
 | Catamarca | K | Neuquén | Q |
@@ -73,174 +73,169 @@ The extension automatically converts province names to codes:
 | La Pampa | L | Tierra del Fuego | V |
 | La Rioja | F | Tucumán | T |
 
-## Default Values
+## Valores Predeterminados
 
-Fields not extracted from orders use these defaults:
+Los campos no extraídos de pedidos usan estos valores predeterminados:
 
 - `tipo_producto`: **CP** (Clásico)
-- `peso`: **0.15** (kg) if not available
-- `largo`, `ancho`, `altura`: From Settings or empty
+- `peso`: **0.15** (kg) si no está disponible
+- `largo`, `ancho`, `altura`: Desde Configuración o vacío
 
-### Customizing Address Fields
+### Personalizar Campos de Dirección
 
-You can customize what goes into each CSV address field individually:
+Puedes personalizar qué va en cada campo de dirección CSV individualmente:
 
-1. Click extension icon → **⚙️ Settings**
-2. Scroll to **📍 Address Field Templates**
-3. Configure each field using variables:
-   - `$street` - Street name
-   - `$number` - Street number
-   - `$floor` - Floor number
-   - `$apt` - Apartment
-   - `$city` - City name
-   - `$province` - Province name
-   - `$postalCode` - Postal code
+1. Haz clic en el ícono de la extensión → **⚙️ Configuración**
+2. Desplázate a **📍 Plantillas de Campos de Dirección**
+3. Configura cada campo usando variables:
+   - `$street` - Nombre de la calle
+   - `$number` - Número de la calle
+   - `$floor` - Número de piso
+   - `$apt` - Departamento
+   - `$city` - Nombre de la ciudad
+   - `$province` - Nombre de la provincia
+   - `$postalCode` - Código postal
 
-**Available Fields:**
-- **calle_destino** - Street address field (default: `$street`)
-- **altura_destino** - Street number field (default: `$number`)
-- **piso** - Floor field (default: `$floor`)
-- **dpto** - Apartment field (default: `$apt`)
+**Campos Disponibles:**
+- **calle_destino** - Campo de dirección de calle (predeterminado: `$street  $number - $floor $apt`)
+- **altura_destino** - Campo de número de calle (predeterminado: vacío)
+- **piso** - Campo de piso (predeterminado: vacío)
+- **dpto** - Campo de departamento (predeterminado: vacío)
 
-**Examples:**
+**Ejemplos:**
 
-*Separate fields (default):*
+*Dirección completa (predeterminado):*
+- calle_destino: `$street  $number - $floor $apt` → "Av. Corrientes 1234 - 5 A"
+- altura_destino: (vacío)
+- piso: (vacío)
+- dpto: (vacío)
+
+*Campos separados:*
 - calle_destino: `$street` → "Av. Corrientes"
 - altura_destino: `$number` → "1234"
 - piso: `$floor` → "5"
 - dpto: `$apt` → "A"
 
-*Combined address:*
-- calle_destino: `$street $number` → "Av. Corrientes 1234"
-- altura_destino: (empty)
-- piso: `$floor` → "5"
-- dpto: `$apt` → "A"
 
-*All in one field:*
-- calle_destino: `$street $number, Piso $floor, Depto $apt` → "Av. Corrientes 1234, Piso 5, Depto A"
-- altura_destino: (empty)
-- piso: (empty)
-- dpto: (empty)
+Las plantillas vacías o valores faltantes resultan en campos vacíos. Los espacios extra y paréntesis vacíos se eliminan automáticamente.
 
-Empty templates or missing values result in empty fields. Extra spaces and empty parentheses are automatically removed.
+### Establecer Dimensiones Predeterminadas
 
-### Setting Default Dimensions
+Puedes configurar dimensiones predeterminadas del paquete en Configuración:
 
-You can configure default package dimensions in Settings:
+1. Haz clic en el ícono de la extensión → **⚙️ Configuración**
+2. Desplázate a **📦 Dimensiones Predeterminadas del Paquete**
+3. Ingresa valores en CM:
+   - **Largo** (Length) - ej., 30
+   - **Ancho** (Width) - ej., 20
+   - **Altura** (Height) - ej., 10
+4. Haz clic en **💾 Guardar Configuración**
 
-1. Click extension icon → **⚙️ Settings**
-2. Scroll to **📦 Default Package Dimensions**
-3. Enter values in CM:
-   - **Largo** (Length) - e.g., 30
-   - **Ancho** (Width) - e.g., 20
-   - **Altura** (Height) - e.g., 10
-4. Click **💾 Save Configuration**
+Estas dimensiones se aplicarán automáticamente a todos los pedidos exportados. Deja vacío para llenar manualmente en Excel.
 
-These dimensions will be automatically applied to all exported orders. Leave empty to fill manually in Excel.
+## Parseo de Número de Teléfono
 
-## Phone Number Parsing
+Los números de teléfono argentinos se parsean automáticamente:
+- Formato: `543513344884` → Código de área: `351`, Número: `3344884`
+- Se elimina el código de país (54)
+- Se extrae el código de área (típicamente 2-4 dígitos)
 
-Argentine phone numbers are automatically parsed:
-- Format: `543513344884` → Area code: `351`, Number: `3344884`
-- Country code (54) is removed
-- Area code extracted (typically 2-4 digits)
+## Parseo de Moneda
 
-## Currency Parsing
+Los valores de moneda se convierten desde formato argentino:
+- Entrada: `$6.201,00`
+- Salida: `6201.00` (formato de punto decimal)
 
-Currency values are converted from Argentine format:
-- Input: `$6.201,00`
-- Output: `6201.00` (decimal point format)
+## Sanitización de Texto
 
-## Text Sanitization
+Los campos de texto pueden ser sanitizados según tu configuración en Configuración (⚙️ Configuración → **🔤 Sanitización de Texto**):
 
-Text fields can be sanitized based on your configuration in Settings (⚙️ Settings → **🔤 Text Sanitization**):
+### Opciones Configurables
 
-### Configurable Options
-
-**✓ Remove accents** (default: ON)
+**✓ Eliminar acentos** (predeterminado: ACTIVADO)
 - `á, é, í, ó, ú` → `a, e, i, o, u`
-- Example: `Córdoba` → `Cordoba`
+- Ejemplo: `Córdoba` → `Cordoba`
 
-**☐ Replace ñ with n** (default: OFF - keeps ñ)
+**☐ Reemplazar ñ con n** (predeterminado: DESACTIVADO - mantiene ñ)
 - `ñ, Ñ` → `n, N`
-- Example: `España` → `Espana` (only if enabled)
+- Ejemplo: `España` → `Espana` (solo si está habilitado)
 
-**☐ Replace ü with u** (default: OFF)
+**☐ Reemplazar ü con u** (predeterminado: DESACTIVADO)
 - `ü, Ü` → `u, U`
-- Example: `Güemes` → `Guemes` (only if enabled)
+- Ejemplo: `Güemes` → `Guemes` (solo si está habilitado)
 
-**✓ Remove parentheses** (default: ON)
-- Removes `()`
-- Example: `Piaggio (M25)` → `Piaggio M25`
+**✓ Eliminar paréntesis** (predeterminado: ACTIVADO)
+- Elimina `()`
+- Ejemplo: `Piaggio (M25)` → `Piaggio M25`
 
-**✓ Remove special characters** (default: ON)
-- Removes quotes `"" ''`, brackets `[] {}`, angle brackets `<>`
-- Example: `"Street"` → `Street`
+**✓ Eliminar caracteres especiales** (predeterminado: ACTIVADO)
+- Elimina comillas `"" ''`, corchetes `[] {}`, paréntesis angulares `<>`
+- Ejemplo: `"Calle"` → `Calle`
 
-### Default Settings
+### Configuración Predeterminada
 
-By default:
-- ✅ Accents removed (á→a)
-- ✅ Parentheses removed
-- ✅ Special characters removed
-- ❌ ñ is kept (not replaced)
-- ❌ ü is kept (not replaced)
+Por defecto:
+- ✅ Acentos eliminados (á→a)
+- ✅ Paréntesis eliminados
+- ✅ Caracteres especiales eliminados
+- ❌ ñ se mantiene (no se reemplaza)
+- ❌ ü se mantiene (no se reemplaza)
 
-### Examples
+### Ejemplos
 
-With default settings:
+Con configuración predeterminada:
 - `Córdoba` → `Cordoba`
-- `España` → `Espana` (accent removed, ñ kept)
+- `España` → `Espana` (acento eliminado, ñ mantenida)
 - `Piaggio La Calandria (M25 Lt19a)` → `Piaggio La Calandria M25 Lt19a`
 - `José María` → `Jose Maria`
 
-With all options enabled:
-- `España` → `Espana` (both accent and ñ replaced)
-- `Güemes` → `Guemes` (ü replaced)
+Con todas las opciones habilitadas:
+- `España` → `Espana` (tanto acento como ñ reemplazados)
+- `Güemes` → `Guemes` (ü reemplazada)
 
-## File Output
+## Salida de Archivo
 
-- **Filename**: `correo_argentino_YYYY-MM-DD.csv`
-- **Delimiter**: Semicolon (`;`)
-- **Encoding**: UTF-8
-- **Format**: Compatible with Excel and Correo Argentino system
+- **Nombre de archivo**: `correo_argentino_AAAA-MM-DD.csv`
+- **Delimitador**: Punto y coma (`;`)
+- **Codificación**: UTF-8
+- **Formato**: Compatible con Excel y el sistema de Correo Argentino
 
-## Validation
+## Validación
 
-Only orders with complete shipping information are exported:
-- Must have `shippingInfo` object
-- Must have `recipient` data (name, email)
-- Must have `address` data
+Solo se exportan pedidos con información de envío completa:
+- Debe tener objeto `shippingInfo`
+- Debe tener datos de `recipient` (nombre, email)
+- Debe tener datos de `address`
 
-Orders without shipping info are skipped with a count shown in the success message.
+Los pedidos sin información de envío se omiten con un conteo mostrado en el mensaje de éxito.
 
-## Reference Files
+## Archivos de Referencia
 
-- `carga/Plantilla_Carga_Masiva.csv` - CSV template
-- `carga/carga_masiva_ejemplos_e_instrucciones.xlsx` - Instructions and examples
-- `carga/codigos_sucursales_y_provincias_MiCorreo.xlsx` - Province and branch codes
+- `carga/Plantilla_Carga_Masiva.csv` - Plantilla CSV
+- `carga/carga_masiva_ejemplos_e_instrucciones.xlsx` - Instrucciones y ejemplos
+- `carga/codigos_sucursales_y_provincias_MiCorreo.xlsx` - Códigos de provincias y sucursales
 
-## Troubleshooting
+## Solución de Problemas
 
-**No orders exported?**
-- Ensure orders have shipping information extracted
-- Visit order pages with "Información de envío" section
-- Check that province names are recognized
+**¿No se exportan pedidos?**
+- Asegúrate de que los pedidos tengan información de envío extraída
+- Visita páginas de pedidos con sección "Información de envío"
+- Verifica que los nombres de provincias sean reconocidos
 
-**Invalid province code?**
-- Province name must match standard Argentine province names
-- Check spelling and accents (Córdoba, Tucumán, etc.)
+**¿Código de provincia inválido?**
+- El nombre de la provincia debe coincidir con nombres estándar de provincias argentinas
+- Verifica ortografía y acentos (Córdoba, Tucumán, etc.)
 
-**Missing dimensions?**
-- Largo, ancho, altura are not auto-extracted
-- Fill manually in Excel before uploading to Correo Argentino
-- Or set defaults in `csv-export.js`
+**¿Dimensiones faltantes?**
+- Largo, ancho, altura no se extraen automáticamente
+- Llena manualmente en Excel antes de subir a Correo Argentino
+- O establece valores predeterminados en Configuración
 
-## Manual Editing
+## Edición Manual
 
-After export, you may need to manually edit:
-1. Package dimensions (largo, ancho, altura)
-2. Product type (CP → EP or UP for faster delivery)
-3. Any missing or incorrect data
+Después de exportar, es posible que necesites editar manualmente:
+1. Dimensiones del paquete (largo, ancho, altura)
+2. Tipo de producto (CP → EP o UP para entrega más rápida)
+3. Cualquier dato faltante o incorrecto
 
-Open the CSV in Excel or text editor and fill before uploading.
+Abre el CSV en Excel o editor de texto y completa antes de subir.

@@ -1,4 +1,6 @@
-// Configuration page functionality
+// Configura// Options page script
+// Note: Some code in this file was generated with AI assistance
+console.log('Order Reader Extension: Options page loaded');
 
 document.addEventListener('DOMContentLoaded', () => {
   loadSettings();

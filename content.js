@@ -1,4 +1,6 @@
-// Content script to extract order information from pages
+// Content script for order extraction
+// Note: Some code in this file was generated with AI assistance
+console.log('Order Reader Extension: Content script loaded');
 
 function extractOrderData() {
   const orderData = {

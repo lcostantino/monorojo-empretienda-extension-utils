@@ -8,10 +8,10 @@ async function getCSVExportSettings() {
   return new Promise((resolve) => {
     chrome.storage.sync.get(['csvExportSettings'], (result) => {
       resolve(result.csvExportSettings || {
-        calleDestinoTemplate: '$street',
-        alturaDestinoTemplate: '$number',
-        pisoTemplate: '$floor',
-        dptoTemplate: '$apt',
+        calleDestinoTemplate: '$street  $number - $floor $apt',
+        alturaDestinoTemplate: '',
+        pisoTemplate: '',
+        dptoTemplate: '',
         removeAccents: true,
         replaceEnie: false,
         replaceUmlaut: false,

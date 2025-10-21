@@ -1,4 +1,7 @@
-// Popup script
+// Popup script for managing UI and interactions
+// Note: Some code in this file was generated with AI assistance
+console.log('Order Reader Extension: Popup loaded');
+
 document.addEventListener('DOMContentLoaded', () => {
   loadOrders();
   

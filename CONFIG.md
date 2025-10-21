@@ -12,23 +12,22 @@ The extension includes configuration for CSV export formatting.
 
 ### Configuration Steps
 
-#### Step 1: Customize Address Field Templates (Optional)
+#### Step 1: Configure Address Field Templates
 
-Configure what goes into each CSV address field:
+Customize how address data maps to CSV fields:
 
-**Available Fields:**
-- **calle_destino** - Street address (default: `$street`)
-- **altura_destino** - Street number (default: `$number`)
-- **piso** - Floor (default: `$floor`)
-- **dpto** - Apartment (default: `$apt`)
+**Default Configuration (Recommended):**
+- calle_destino: `$street  $number - $floor $apt` → Full address in one field
+- altura_destino: (empty)
+- piso: (empty)
+- dpto: (empty)
 
 **Available Variables:**
 - `$street`, `$number`, `$floor`, `$apt`, `$city`, `$province`, `$postalCode`
 
-**Examples:**
-- Separate fields: calle_destino=`$street`, altura_destino=`$number`
-- Combined: calle_destino=`$street $number`, altura_destino=(empty)
-- All-in-one: calle_destino=`$street $number ($floor $apt)`, others empty
+**Alternative Examples:**
+- Separate fields: calle_destino=`$street`, altura_destino=`$number`, piso=`$floor`, dpto=`$apt`
+- Street + number: calle_destino=`$street $number`, altura_destino=(empty), piso=`$floor`, dpto=`$apt`
 
 Leave a template empty to skip that field in the CSV.
 
@@ -60,7 +59,7 @@ Configuration is saved to Chrome sync storage and syncs across your browsers.
 
 ### Settings Storage
 
-Configuration is stored in Chrome's sync storage under the key `csvExportSettings`:
+La configuración se almacena en Chrome sync storage bajo la clave `csvExportSettings`:
 - `calleDestinoTemplate`, `alturaDestinoTemplate`, `pisoTemplate`, `dptoTemplate` - Field templates
 - `removeAccents` - Remove accent marks (default: true)
 - `replaceEnie` - Replace ñ→n (default: false)
