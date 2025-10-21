@@ -9,51 +9,65 @@
 <body>
   <div class="container">
     <header>
-      <h1>📦 <span data-i18n="extName">Order Reader</span></h1>
-      <p class="subtitle" data-i18n="subtitle">Extract order information from pages</p>
-      <div class="actions">
-        <button id="extractBtn" class="btn btn-primary" data-i18n="extractButton">
-          <span class="icon">🔍</span>
-          Extract Current Page
-        </button>
-        <button id="clearBtn" class="btn btn-danger" data-i18n="clearButton">
-          <span class="icon">🗑️</span>
-          Clear History
-        </button>
-      </div>
+      <h1>📦 <span data-i18n="extName">Empretienda Utils</span></h1>
     </header>
 
-    <div id="error" class="error" style="display: none;"></div>
+    <!-- Tab Navigation -->
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="correo-tools">
+        📦 <span data-i18n="correoToolsTab">Correo Tools</span>
+      </button>
+    </nav>
 
-    <div id="currentOrder" class="section" style="display: none;">
-      <h2 data-i18n="currentOrder">Current Order</h2>
-      <div id="currentOrderContent" class="order-card"></div>
+    <!-- Tab Content -->
+    <div class="tab-content">
+      <!-- Correo Tools Tab -->
+      <div id="correo-tools" class="tab-panel active">
+        <div class="tab-header">
+          <div class="actions">
+            <button id="extractBtn" class="btn btn-primary" data-i18n="extractButton">
+              🔍 Extract Current Page
+            </button>
+            <button id="clearBtn" class="btn btn-danger" data-i18n="clearButton">
+              🗑️ Clear History
+            </button>
+          </div>
+        </div>
+
+        <div id="error" class="error" style="display: none;"></div>
+
+        <div id="currentOrder" class="section" style="display: none;">
+          <h2 data-i18n="currentOrder">Current Order</h2>
+          <div id="currentOrderContent" class="order-card"></div>
+        </div>
+
+        <div id="ordersHistory" class="section">
+          <h2 data-i18n="recentOrders">Recent Orders</h2>
+          <div id="ordersList"></div>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          <p data-i18n="noOrdersFound">No orders found yet.</p>
+          <p class="hint" data-i18n="noOrdersHint">Visit an order page and click "Extract Current Page" to capture order data.</p>
+        </div>
+
+        <footer>
+          <button id="exportBtn" class="btn-link" data-i18n="exportButton">
+            Export to JSON
+          </button>
+          <button id="exportCSVBtn" class="btn-link">
+            📦 <span data-i18n="exportCSVButton">Export to Correo Argentino CSV</span>
+          </button>
+          <button id="copyBtn" class="btn-link" data-i18n="copyButton">
+            Copy to Clipboard
+          </button>
+          <button id="settingsBtn" class="btn-link">
+            ⚙️ <span data-i18n="settingsButton">Settings</span>
+          </button>
+        </footer>
+      </div>
+      <!-- End Correo Tools Tab -->
     </div>
-
-    <div id="ordersHistory" class="section">
-      <h2 data-i18n="recentOrders">Recent Orders</h2>
-      <div id="ordersList"></div>
-    </div>
-
-    <div id="emptyState" class="empty-state">
-      <p data-i18n="noOrdersFound">No orders found yet.</p>
-      <p class="hint" data-i18n="noOrdersHint">Visit an order page and click "Extract Current Page" to capture order data.</p>
-    </div>
-
-    <footer>
-      <button id="exportBtn" class="btn-link" data-i18n="exportButton">
-        Export to JSON
-      </button>
-      <button id="exportCSVBtn" class="btn-link">
-        📦 <span data-i18n="exportCSVButton">Export to Correo Argentino CSV</span>
-      </button>
-      <button id="copyBtn" class="btn-link" data-i18n="copyButton">
-        Copy to Clipboard
-      </button>
-      <button id="settingsBtn" class="btn-link">
-        ⚙️ <span data-i18n="settingsButton">Settings</span>
-      </button>
-    </footer>
   </div>
 
   <script src="csv-export.js"></script>

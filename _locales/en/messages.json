@@ -2,6 +2,9 @@
   "extName": {
     "message": "Empretienda Utils by MonoRojo FunShirt!"
   },
+  "correoToolsTab": {
+    "message": "Correo Tools"
+  },
   "extDescription": {
     "message": "Reads and extracts order information from e-commerce order pages"
   },

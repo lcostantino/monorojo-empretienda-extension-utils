@@ -3,8 +3,13 @@
 console.log('Order Reader Extension: Popup loaded');
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize tabs
+  initializeTabs();
+  
+  // Load orders
   loadOrders();
   
+  // Event listeners
   document.getElementById('extractBtn').addEventListener('click', extractCurrentPage);
   document.getElementById('clearBtn').addEventListener('click', clearHistory);
   document.getElementById('exportBtn').addEventListener('click', exportToJSON);
@@ -12,6 +17,32 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('copyBtn').addEventListener('click', copyToClipboard);
   document.getElementById('settingsBtn').addEventListener('click', openSettings);
 });
+
+// Tab management
+function initializeTabs() {
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const tabId = button.getAttribute('data-tab');
+      switchTab(tabId);
+    });
+  });
+}
+
+function switchTab(tabId) {
+  // Update tab buttons
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+  
+  // Update tab panels
+  document.querySelectorAll('.tab-panel').forEach(panel => {
+    panel.classList.remove('active');
+  });
+  document.getElementById(tabId).classList.add('active');
+}
 
 function openSettings() {
   chrome.runtime.openOptionsPage();
